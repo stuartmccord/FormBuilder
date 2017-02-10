@@ -1,0 +1,20 @@
+{
+    "name": "StuartMcCord/FormBuilder",
+    "description": "Custom Laravel collective formbuilder",
+    "type": "library",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Stuart McCord",
+            "email": "stuart.mccord@gmail.com"
+        }
+    ],
+    "require": {
+        "laravelcollective/html": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Stuartmccord\\FormBuilder\\": "src/"
+        }
+    },
+}
