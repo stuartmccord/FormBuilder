@@ -3,6 +3,7 @@
 namespace Stuartmccord\FormBuilder;
 
 use Collective\Html\HtmlServiceProvider;
+use Stuartmccord\FormBuilder\Bulma\Renderer;
 
 class FormBuilderServiceProvider extends HtmlServiceProvider
 {
@@ -27,7 +28,8 @@ class FormBuilderServiceProvider extends HtmlServiceProvider
     public function registerBulmaFormBuilder()
     {
         $this->app->singleton('bulma', function ($app) {
-            return $form = new BulmaFormBuilder($app['form']);
+            $renderer = new Renderer();
+            return $form = new FormBuilder($app['form'], $renderer);
         });
     }
 
