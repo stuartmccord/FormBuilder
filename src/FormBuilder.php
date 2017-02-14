@@ -53,6 +53,14 @@ class FormBuilder
         return $this;
     }
 
+    public function textarea($name = null)
+    {
+        $this->type = 'textarea';
+        $this->name = $name ?: $this->name;
+
+        return $this;
+    }
+
     public function test()
     {
         $renderer = $this->renderer;

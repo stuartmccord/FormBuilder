@@ -10,6 +10,8 @@ class Renderer
     {
         if ($parameters->type == 'text') {
             return new TextRenderer($builder, $parameters);
+        } elseif ($parameters->type == 'textarea') {
+            return new TextAreaRenderer($builder, $parameters);
         }
     }
 }
