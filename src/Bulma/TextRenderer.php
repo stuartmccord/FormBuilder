@@ -16,7 +16,7 @@ class TextRenderer
     public function render()
     {
         $label = '<label class="label">'.$this->parameters->label.'</label>';
-        $textInput = $this->builder->text($this->parameters->name, $this->parameters->value);
+        $textInput = $this->builder->text($this->parameters->name, $this->parameters->value, ['class' => 'input']);
 
         $html = "
         $label
