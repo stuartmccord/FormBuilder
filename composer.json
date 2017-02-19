@@ -1,5 +1,5 @@
 {
-    "name": "StuartMcCord/FormBuilder",
+    "name": "stuartmccord/formbuilder",
     "description": "Custom Laravel collective formbuilder",
     "type": "library",
     "license": "GPL",
