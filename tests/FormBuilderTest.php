@@ -70,4 +70,20 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
             $textArea
         );
     }
+
+    /** @test */
+    public function testRadioButton()
+    {
+        $radio = $this->formBuilder->label('Radio Label')->radio('question')->value(10)->checked();
+
+        $expected = '
+              <label class="radio">
+              <input checked="checked" name="question" type="radio" value="10">Radio Label</label>
+        ';
+
+        $this->assertEqualHTML(
+            $expected,
+            $radio
+        );
+    }
 }

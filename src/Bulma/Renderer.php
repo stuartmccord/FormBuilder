@@ -12,6 +12,8 @@ class Renderer
             return new TextRenderer($builder, $parameters);
         } elseif ($parameters->type == 'textarea') {
             return new TextAreaRenderer($builder, $parameters);
+        } elseif ($parameters->type == 'radio') {
+            return new RadioRenderer($builder, $parameters);
         }
     }
 }

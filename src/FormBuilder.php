@@ -8,6 +8,7 @@ class FormBuilder
     public $label = null;
     public $help = null;
     public $placeholder = null;
+    public $checked = false;
     protected $builder;
     protected $renderer;
 
@@ -53,6 +54,14 @@ class FormBuilder
         return $this;
     }
 
+    public function radio($name = null)
+    {
+        $this->type = 'radio';
+        $this->name = $name ?: $this->name;
+
+        return $this;
+    }
+
     public function textarea($name = null)
     {
         $this->type = 'textarea';
@@ -61,7 +70,14 @@ class FormBuilder
         return $this;
     }
 
-    public function test()
+    public function checked($checked = true)
+    {
+        $this->checked = $checked ? 'checked' : '';
+
+        return $this;
+    }
+
+    public function get()
     {
         $renderer = $this->renderer;
 
@@ -70,6 +86,6 @@ class FormBuilder
 
     public function __toString()
     {
-        return $this->test();
+        return $this->get();
     }
 }
