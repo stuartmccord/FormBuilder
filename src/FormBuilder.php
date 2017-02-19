@@ -70,6 +70,14 @@ class FormBuilder
         return $this;
     }
 
+    public function checkbox($name = null)
+    {
+        $this->type = 'checkbox';
+        $this->name = $name ?: $this->name;
+
+        return $this;
+    }
+
     public function checked($checked = true)
     {
         $this->checked = $checked ? 'checked' : '';

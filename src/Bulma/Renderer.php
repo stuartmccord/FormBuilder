@@ -14,6 +14,8 @@ class Renderer
             return new TextAreaRenderer($builder, $parameters);
         } elseif ($parameters->type == 'radio') {
             return new RadioRenderer($builder, $parameters);
+        } elseif ($parameters->type == 'checkbox') {
+            return new CheckboxRenderer($builder, $parameters);
         }
     }
 }

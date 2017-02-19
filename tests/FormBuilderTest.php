@@ -86,4 +86,22 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
             $radio
         );
     }
+
+    /** @test */
+    public function testCheckbox()
+    {
+        $checkbox = $this->formBuilder->label('Remember me')->checkbox('remember')->value('test');
+
+        $expected = '
+            <p class="control">
+                <label class="checkbox">
+                    <input name="remember" type="checkbox" value="test">Remember me</label>
+            </p>
+        ';
+
+        $this->assertEqualHTML(
+            $expected,
+            $checkbox
+        );
+    }
 }
