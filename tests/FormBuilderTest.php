@@ -28,12 +28,18 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
     public function testTextField()
     {
         $text = $this->formBuilder->label('label text')->text('textinput');
-        $text = preg_replace('~>\s+<~', '><', $text);
-        $text = trim($text);
+        $textDocument = new DOMDocument($text);
+
+        $expected = new DOMDocument('
+            <label class="label">label text</label>
+            <p class="control">
+                <input class="input" name="textinput" type="text">
+            </p>
+            ');
 
         $this->assertEquals(
-            '<label class="label">label text</label><p class="control"><input class="input" name="textinput" type="text"></p>',
-            $text
+            $expected->saveHTML(),
+            $textDocument->saveHTML()
         );
     }
 }
