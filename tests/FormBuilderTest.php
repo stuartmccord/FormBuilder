@@ -42,4 +42,23 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
             $textDocument->saveHTML()
         );
     }
+
+    /** @test */
+    public function testTextAreaField()
+    {
+        $textArea = $this->formBuilder->label('Message')->textarea('textareainput');
+        $textAreaDocument = new DOMDocument($textArea);
+
+        $expected = new DOMDocument('
+            <label class="label">Message</label>
+            <p class="control">
+                <textarea class="textarea"></textarea>
+            </p>
+        ');
+
+        $this->assertEquals(
+            $expected->saveHTML(),
+            $textAreaDocument->saveHTML()
+        );
+    }
 }
