@@ -24,22 +24,32 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
         Mockery::close();
     }
 
+    public function assertEqualHTML($expected, $given)
+    {
+        $expected = preg_replace('~>\s+<~', '><', $expected);
+        $expected = trim($expected);
+
+        $given = preg_replace('~>\s+<~', '><', $given);
+        $given = trim($given);
+
+        return $this->assertEquals($expected, $given);
+    }
+
     /** @test */
     public function testTextField()
     {
-        $text = $this->formBuilder->label('label text')->text('textinput');
-        $textDocument = new DOMDocument($text);
+        $text = $this->formBuilder->label('label text')->text('textinput')->placeholder('test placeholder');
 
-        $expected = new DOMDocument('
+        $expected = '
             <label class="label">label text</label>
             <p class="control">
-                <input class="input" name="textinput" type="text">
+                <input class="input" placeholder="test placeholder" name="textinput" type="text">
             </p>
-            ');
+        ';
 
-        $this->assertEquals(
-            $expected->saveHTML(),
-            $textDocument->saveHTML()
+        $this->assertEqualHTML(
+            $expected,
+            $text
         );
     }
 
