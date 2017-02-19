@@ -104,4 +104,30 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
             $checkbox
         );
     }
+
+    /** @test */
+    public function testSelect()
+    {
+        $select = $this->formBuilder->label('Subject')->value(2)->options([
+            1 => 'Select dropdown',
+            2 => 'With options'
+        ])->select();
+
+        $expected = '
+            <label class="label">Subject</label>
+            <p class="control">
+                <span class="select">
+                    <select>
+                        <option value="1">Select dropdown</option>
+                        <option value="2" selected="selected">With options</option>
+                    </select>
+                </span>
+            </p>
+        ';
+
+        $this->assertEqualHTML(
+            $expected,
+            $select
+        );
+    }
 }

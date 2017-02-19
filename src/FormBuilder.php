@@ -8,7 +8,10 @@ class FormBuilder
     public $label = null;
     public $help = null;
     public $placeholder = null;
-    public $checked = false;
+    public $checked = null;
+    public $options = null;
+    public $name = null;
+    public $type = null;
     protected $builder;
     protected $renderer;
 
@@ -74,6 +77,21 @@ class FormBuilder
     {
         $this->type = 'checkbox';
         $this->name = $name ?: $this->name;
+
+        return $this;
+    }
+
+    public function select($name = null)
+    {
+        $this->type = 'select';
+        $this->name = $name ?: $this->name;
+
+        return $this;
+    }
+
+    public function options(Array $options = null)
+    {
+        $this->options = $options;
 
         return $this;
     }

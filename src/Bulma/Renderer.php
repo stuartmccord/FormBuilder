@@ -16,6 +16,8 @@ class Renderer
             return new RadioRenderer($builder, $parameters);
         } elseif ($parameters->type == 'checkbox') {
             return new CheckboxRenderer($builder, $parameters);
+        } elseif ($parameters->type == 'select') {
+            return new SelectRenderer($builder, $parameters);
         }
     }
 }
