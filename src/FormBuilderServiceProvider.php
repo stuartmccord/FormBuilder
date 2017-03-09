@@ -2,10 +2,10 @@
 
 namespace Stuartmccord\FormBuilder;
 
-use Collective\Html\HtmlServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use Stuartmccord\FormBuilder\Bulma\Renderer;
 
-class FormBuilderServiceProvider extends HtmlServiceProvider
+class FormBuilderServiceProvider extends ServiceProvider
 {
     /**
      * Register the application services.
@@ -14,15 +14,9 @@ class FormBuilderServiceProvider extends HtmlServiceProvider
      */
     public function register()
     {
-        $this->registerHtmlBuilder();
-
-        $this->registerFormBuilder();
-
         $this->registerBulmaFormBuilder();
 
-        $this->app->alias('html', 'Collective\Html\HtmlBuilder');
-        $this->app->alias('form', 'Collective\Html\Formbuilder');
-        $this->app->alias('bulma', 'Stuartmccord\FormBuilder\BulmaFormBuilder');
+        $this->app->alias('bulma', 'Stuartmccord\FormBuilder\FormBuilder');
     }
 
     public function registerBulmaFormBuilder()
@@ -41,12 +35,8 @@ class FormBuilderServiceProvider extends HtmlServiceProvider
     public function provides()
     {
         return [
-            'html',
-            'form',
             'bulma',
-            'Collective\Html\HtmlBuilder',
-            'Collective\Html\Formbuilder',
-            'Stuartmccord\FormBuilder\BulmaFormBuilder'
+            'Stuartmccord\FormBuilder\FormBuilder'
         ];
     }
 }

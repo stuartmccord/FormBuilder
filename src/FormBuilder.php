@@ -15,7 +15,7 @@ class FormBuilder
     protected $builder;
     protected $renderer;
 
-    public function __construct($builder, $renderer)
+    public function __construct(\Collective\Html\FormBuilder $builder, $renderer)
     {
         $this->builder = $builder;
         $this->renderer = $renderer;

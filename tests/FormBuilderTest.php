@@ -12,9 +12,9 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
         $this->urlGenerator = new \Illuminate\Routing\UrlGenerator(new RouteCollection(), Request::create('/foo', 'GET'));
         $this->viewFactory = Mockery::mock(Factory::class);
         $this->htmlBuilder = new \Collective\Html\HtmlBuilder($this->urlGenerator, $this->viewFactory);
-        $collectivFormBuilder = new \Collective\Html\FormBuilder($this->htmlBuilder, $this->urlGenerator, $this->viewFactory, 'abc');
+        $collectiveFormBuilder = new \Collective\Html\FormBuilder($this->htmlBuilder, $this->urlGenerator, $this->viewFactory, 'abc');
 
-        $this->formBuilder = new FormBuilder($collectivFormBuilder, new \Stuartmccord\FormBuilder\Bulma\Renderer());
+        $this->formBuilder = new FormBuilder($collectiveFormBuilder, new \Stuartmccord\FormBuilder\Bulma\Renderer());
     }
 
     public function tearDown()
