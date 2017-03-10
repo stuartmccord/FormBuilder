@@ -2,17 +2,8 @@
 
 namespace Stuartmccord\FormBuilder\Bulma;
 
-class RadioRenderer
+class RadioRenderer extends BaseRenderer
 {
-    protected $builder;
-    protected $parameters;
-
-    public function __construct($builder, $parameters)
-    {
-        $this->builder = $builder;
-        $this->parameters = $parameters;
-    }
-
     public function render()
     {
         $radio = $this->builder->radio(

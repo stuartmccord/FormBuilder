@@ -2,17 +2,8 @@
 
 namespace Stuartmccord\FormBuilder\Bulma;
 
-class CheckboxRenderer
+class CheckboxRenderer extends BaseRenderer
 {
-    protected $builder;
-    protected $parameters;
-
-    public function __construct($builder, $parameters)
-    {
-        $this->builder = $builder;
-        $this->parameters = $parameters;
-    }
-
     public function render()
     {
         $checkbox = $this->builder->checkbox(

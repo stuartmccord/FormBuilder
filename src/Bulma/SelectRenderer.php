@@ -2,17 +2,8 @@
 
 namespace Stuartmccord\FormBuilder\Bulma;
 
-class SelectRenderer
+class SelectRenderer extends BaseRenderer
 {
-    protected $builder;
-    protected $parameters;
-
-    public function __construct($builder, $parameters)
-    {
-        $this->builder = $builder;
-        $this->parameters = $parameters;
-    }
-
     public function render()
     {
         $label = '<label class="label">'.$this->parameters->label.'</label>';
