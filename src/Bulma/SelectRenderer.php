@@ -6,7 +6,12 @@ class SelectRenderer extends BaseRenderer
 {
     public function render()
     {
-        $label = '<label class="label">'.$this->parameters->label.'</label>';
+        $label = $this->builder->label(
+            $this->parameters->name,
+            $this->parameters->label,
+            ['class' => "label"]
+        );
+
         $select = $this->builder->select(
             $this->parameters->name,
             $this->parameters->options,

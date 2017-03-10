@@ -41,9 +41,9 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
         $text = $this->formBuilder->label('label text')->text('textinput')->placeholder('test placeholder');
 
         $expected = '
-            <label class="label">label text</label>
+            <label for="textinput" class="label">label text</label>
             <p class="control">
-                <input class="input" placeholder="test placeholder" name="textinput" type="text">
+                <input class="input" placeholder="test placeholder" name="textinput" type="text" id="textinput">
             </p>
         ';
 
@@ -59,9 +59,9 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
         $textArea = $this->formBuilder->label('Message')->textarea('textareainput')->placeholder('Textarea placeholder');
 
         $expected = '
-            <label class="label">Message</label>
+            <label for="textareainput" class="label">Message</label>
             <p class="control">
-                <textarea class="textarea" placeholder="Textarea placeholder" name="textareainput" cols="50" rows="10"></textarea>
+                <textarea class="textarea" placeholder="Textarea placeholder" name="textareainput" cols="50" rows="10" id="textareainput"></textarea>
             </p>
         ';
 
@@ -94,7 +94,7 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
 
         $expected = '
             <p class="control">
-                <label class="checkbox">
+                <label for="remember" class="checkbox">
                     <input name="remember" type="checkbox" value="test">Remember me</label>
             </p>
         ';
@@ -111,13 +111,13 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
         $select = $this->formBuilder->label('Subject')->value(2)->options([
             1 => 'Select dropdown',
             2 => 'With options'
-        ])->select();
+        ])->select('selectbox');
 
         $expected = '
-            <label class="label">Subject</label>
+            <label for="selectbox" class="label">Subject</label>
             <p class="control">
                 <span class="select">
-                    <select>
+                    <select id="selectbox" name="selectbox">
                         <option value="1">Select dropdown</option>
                         <option value="2" selected="selected">With options</option>
                     </select>

@@ -11,10 +11,18 @@ class CheckboxRenderer extends BaseRenderer
             $this->parameters->value,
             $this->parameters->checked
         );
+        $checkbox .= $this->parameters->label;
+
+        $label = $this->builder->label(
+            $this->parameters->name,
+            $checkbox,
+            ['class' => "checkbox"],
+            false
+        );
 
         $html = '
             <p class="control">
-                <label class="checkbox">'.$checkbox.$this->parameters->label.'</label>
+                '.$label.'
             </p>
         ';
 
