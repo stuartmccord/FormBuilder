@@ -15,14 +15,17 @@ class TextRenderer extends BaseRenderer
         $textInput = $this->builder->text(
             $this->parameters->name,
             $this->parameters->value,
-            ['class' => 'input', 'placeholder' => $this->parameters->placeholder]
+            ['class' => $this->getInputClass('input'), 'placeholder' => $this->parameters->placeholder]
         );
+
+        $error = $this->hasError() ? "<p class=\"help is-danger\">".$this->parameters->error."</p>" : '';
 
         $html = "
         $label
         <p class=\"control\">
             $textInput
         </p>
+        $error
         ";
 
         return $html;
