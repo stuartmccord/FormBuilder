@@ -14,16 +14,19 @@ class TextAreaRenderer extends BaseRenderer
 
         $textAreaInput = $this->builder->textarea($this->parameters->name, $this->parameters->value,
             [
-                'class' => 'textarea',
+                'class' => $this->getInputClass('textarea'),
                 'placeholder' => $this->parameters->placeholder
             ]
         );
+
+        $error = $this->hasError() ? "<p class=\"help is-danger\">".$this->parameters->error."</p>" : '';
 
         $html = "
             $label
             <p class=\"control\">
                 $textAreaInput
             </p>
+            $error
         ";
 
         return $html;
