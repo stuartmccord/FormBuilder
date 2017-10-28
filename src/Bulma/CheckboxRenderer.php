@@ -16,15 +16,17 @@ class CheckboxRenderer extends BaseRenderer
         $label = $this->builder->label(
             $this->parameters->name,
             $checkbox,
-            ['class' => "checkbox"],
+            ['class' => $this->getInputClass("checkbox")],
             false
         );
 
+        $error = $this->haserror() ? "<p class=\"help is-danger\">" . $this->parameters->error . "</p>" : '';
+
         $html = '
             <p class="control">
-                '.$label.'
+                ' . $label . '
             </p>
-        ';
+            '.$error;
 
         return $html;
     }

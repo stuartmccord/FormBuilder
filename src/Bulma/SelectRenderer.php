@@ -19,13 +19,17 @@ class SelectRenderer extends BaseRenderer
             ['placeholder' => $this->parameters->placeholder]
         );
 
+        $error = $this->hasError() ? "<p class=\"help is-danger\">".$this->parameters->error."</p>" : '';
+        $class = $this->getInputClass('control');
+
         $html = "
         $label
-        <p class=\"control\">
+        <p class=\"$class\">
             <span class=\"select\">
                 $select
             </span>
         </p>
+        $error
         ";
 
         return $html;
