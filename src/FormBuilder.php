@@ -12,6 +12,7 @@ class FormBuilder
     public $options = null;
     public $name = null;
     public $type = null;
+    public $error = null;
     protected $builder;
     protected $renderer;
 
@@ -99,6 +100,13 @@ class FormBuilder
     public function checked($checked = true)
     {
         $this->checked = $checked ? 'checked' : '';
+
+        return $this;
+    }
+
+    public function error($text)
+    {
+        $this->error = $text;
 
         return $this;
     }

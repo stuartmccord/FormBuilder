@@ -5,8 +5,13 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\RouteCollection;
 use Stuartmccord\FormBuilder\FormBuilder;
 
-class FormBuilderTest extends PHPUnit_Framework_TestCase
+class FormBuilderTest extends \PHPUnit\Framework\TestCase
 {
+    private $urlGenerator;
+    private $htmlBuilder;
+    private $viewFactory;
+    private $formBuilder;
+
     public function setUp()
     {
         $this->urlGenerator = new \Illuminate\Routing\UrlGenerator(new RouteCollection(), Request::create('/foo', 'GET'));
@@ -24,17 +29,6 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
         Mockery::close();
     }
 
-    public function assertEqualHTML($expected, $given)
-    {
-        $expected = preg_replace('~>\s+<~', '><', $expected);
-        $expected = trim($expected);
-
-        $given = preg_replace('~>\s+<~', '><', $given);
-        $given = trim($given);
-
-        return $this->assertEquals($expected, $given);
-    }
-
     /** @test */
     public function testTextField()
     {
@@ -45,6 +39,29 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
             <p class="control">
                 <input class="input" placeholder="test placeholder" name="textinput" type="text" id="textinput">
             </p>
+        ';
+
+        $this->assertEqualHTML(
+            $expected,
+            $text
+        );
+    }
+
+    /** @test */
+    function test_errors_are_output()
+    {
+        $text = $this->formBuilder
+            ->label('Email')
+            ->text('email')
+            ->placeholder('Email input')
+            ->error('This email is invalid');
+
+        $expected = '
+            <label for="email" class="label">Email</label>
+            <p class="control">
+                <input class="input is-danger" placeholder="Email input" name="email" type="text" id="email">
+            </p>
+            <p class="help is-danger">This email is invalid</p>
         ';
 
         $this->assertEqualHTML(
@@ -95,7 +112,7 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
         $expected = '
             <p class="control">
                 <label for="remember" class="checkbox">
-                    <input name="remember" type="checkbox" value="test">Remember me</label>
+                <input name="remember" type="checkbox" value="test">Remember me</label>
             </p>
         ';
 
@@ -129,5 +146,16 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase
             $expected,
             $select
         );
+    }
+
+    public function assertEqualHTML($expected, $given)
+    {
+        $expected = preg_replace('~>\s+<~', '><', $expected);
+        $expected = trim($expected);
+
+        $given = preg_replace('~>\s+<~', '><', $given);
+        $given = trim($given);
+
+        return $this->assertEquals($expected, $given);
     }
 }
