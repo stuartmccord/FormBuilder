@@ -9,7 +9,7 @@ class TextAreaRenderer extends BaseRenderer
         $label = $this->builder->label(
             $this->parameters->name,
             $this->parameters->label,
-            ['class' => "label"]
+            ['class' => $this->getInputClass("label")]
         );
 
         $textAreaInput = $this->builder->textarea($this->parameters->name, $this->parameters->value,

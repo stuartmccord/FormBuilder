@@ -73,13 +73,18 @@ class FormBuilderTest extends \PHPUnit\Framework\TestCase
     /** @test */
     public function testTextAreaField()
     {
-        $textArea = $this->formBuilder->label('Message')->textarea('textareainput')->placeholder('Textarea placeholder');
+        $textArea = $this->formBuilder
+            ->label('Message')
+            ->textarea('textareainput')
+            ->placeholder('Textarea placeholder')
+            ->error('Error Message');
 
         $expected = '
-            <label for="textareainput" class="label">Message</label>
+            <label for="textareainput" class="label is-danger">Message</label>
             <p class="control">
-                <textarea class="textarea" placeholder="Textarea placeholder" name="textareainput" cols="50" rows="10" id="textareainput"></textarea>
+                <textarea class="textarea is-danger" placeholder="Textarea placeholder" name="textareainput" cols="50" rows="10" id="textareainput"></textarea>
             </p>
+            <p class="help is-danger">Error Message</p>
         ';
 
         $this->assertEqualHTML(
